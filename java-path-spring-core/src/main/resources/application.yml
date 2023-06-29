@@ -1,0 +1,21 @@
+spring:
+    config:
+        activate:
+            on-profile: development
+myproperties:
+    threadPool: 40
+    email: example@development.com
+    servers:
+        - www.abc.dev.com
+        - www.xyz.dev.com
+---
+spring:
+    config:
+        activate:
+            on-profile: production
+myproperties:
+    threadPool: 4000
+    email: example@production.com
+    servers:
+        - www.abc.com
+        - www.xyz.com

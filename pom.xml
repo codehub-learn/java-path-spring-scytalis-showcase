@@ -208,6 +208,7 @@
 				<includes>
 					<include>**/*.properties</include>
 					<include>**/*.yml</include>
+					<include>**/*.yaml</include>
 					<include>**/*.xml</include>
 					<include>**/*.csv</include>
 					<include>**/*.sql</include>
