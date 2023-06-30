@@ -4,6 +4,7 @@ import gr.codelearn.spring.showcase.core.base.BaseComponent;
 import gr.codelearn.spring.showcase.core.domain.User;
 import gr.codelearn.spring.showcase.core.repository.DataRepository;
 import gr.codelearn.spring.showcase.core.repository.UserRepository;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
@@ -12,7 +13,7 @@ import java.util.List;
 
 @Component
 @Primary
-//@ConditionalOnClass(name = "gr.codelearn.spring.showcase.core.component.DataSource")
+@ConditionalOnClass(name = "gr.codelearn.spring.showcase.core.component.DataSource")
 public class UserRepositoryImplSQLWithConnectionPooling extends BaseComponent
 		implements UserRepository, DataRepository {
 

@@ -5,13 +5,14 @@ import gr.codelearn.spring.showcase.core.domain.Product;
 import gr.codelearn.spring.showcase.core.repository.DataRepository;
 import gr.codelearn.spring.showcase.core.repository.ProductRepository;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 import java.util.Collections;
 import java.util.List;
 
 @Component
-//@Primary
+@Primary
 @ConditionalOnClass(name = "gr.codelearn.spring.showcase.core.component.DataSource")
 public class ProductRepositoryImplSQLWithConnectionPooling extends BaseComponent
 		implements ProductRepository, DataRepository {
