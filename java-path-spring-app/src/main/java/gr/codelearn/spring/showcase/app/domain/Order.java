@@ -29,10 +29,6 @@ public class Order extends BaseModel {
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	private Customer customer;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(nullable = false)
-	private Date submitDate;
-
 	@ToString.Exclude
 	@Builder.Default
 	@EqualsAndHashCode.Exclude
@@ -47,4 +43,8 @@ public class Order extends BaseModel {
 	@NotNull
 	@Column(precision = 10, scale = 2, nullable = false)
 	private BigDecimal cost;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(nullable = false)
+	private Date submitDate;
 }

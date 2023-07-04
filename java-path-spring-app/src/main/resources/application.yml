@@ -8,7 +8,7 @@ spring:
         driver-class-name: org.postgresql.Driver
         hikari:
             auto-commit: false
-            connection-test-query: select 1 from dual
+            connection-test-query: select 1
             connection-timeout: 3000
             idle-timeout: 30000
             max-lifetime: 60000
@@ -23,7 +23,7 @@ spring:
                 prepStmtCacheSize: 250
                 prepStmtCacheSqlLimit: 2048
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:postgresql://${POSTGRES_HOST}:5432/${POSTGRES_DB}?reWriteBatchedInserts=true
+        url: jdbc:postgresql://localhost:5432/scytalis-eshop?reWriteBatchedInserts=true
     jpa:
         generate-ddl: true
         hibernate:
@@ -35,7 +35,9 @@ spring:
             hibernate:
                 batch_versioned_data: true
                 connection:
-                    # Source https://vladmihalcea.com/spring-transaction-connection-management
+                    # Sources
+                    # https://vladmihalcea.com/spring-transaction-connection-management
+                    # https://vladmihalcea.com/why-you-should-always-use-hibernate-connection-provider_disables_autocommit-for-resource-local-jpa-transactions/
                     # handling_mode: DELAYED_ACQUISITION_AND_RELEASE_AFTER_STATEMENT
                     provider_disables_autocommit: true
                 dialect: org.hibernate.dialect.PostgreSQLDialect
