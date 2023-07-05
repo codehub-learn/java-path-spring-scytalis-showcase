@@ -3,10 +3,14 @@ package gr.codelearn.spring.showcase.app.service;
 import gr.codelearn.spring.showcase.app.base.BaseComponent;
 import gr.codelearn.spring.showcase.app.domain.BaseModel;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
 import java.util.List;
 
+@Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED, rollbackFor = Exception.class)
 public abstract class BaseServiceImpl<T extends BaseModel> extends BaseComponent implements BaseService<T, Long> {
 	public abstract JpaRepository<T, Long> getRepository();
 
@@ -48,12 +52,14 @@ public abstract class BaseServiceImpl<T extends BaseModel> extends BaseComponent
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public boolean exists(final T item) {
 		logger.trace("Checking whether {} exists.", item);
 		return getRepository().existsById(item.getId());
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public T get(final Long id) {
 		T item = getRepository().findById(id).orElseThrow();
 		logger.trace("Item found matching id:{}.", id);
@@ -61,12 +67,14 @@ public abstract class BaseServiceImpl<T extends BaseModel> extends BaseComponent
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public List<T> findAll() {
 		logger.trace("Retrieving all items.");
 		return getRepository().findAll();
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public Long count() {
 		return getRepository().count();
 	}

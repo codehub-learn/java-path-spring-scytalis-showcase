@@ -1,8 +1,10 @@
 package gr.codelearn.spring.showcase.app.service;
 
+import gr.codelearn.spring.showcase.app.domain.BaseModel;
+
 import java.util.List;
 
-public interface BaseService<T, K> {
+public interface BaseService<T extends BaseModel, K> {
 	T create(final T item);
 
 	List<T> createAll(final T... items);
