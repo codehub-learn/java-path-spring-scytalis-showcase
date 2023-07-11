@@ -4,9 +4,11 @@ import gr.codelearn.spring.showcase.app.base.BaseComponent;
 import gr.codelearn.spring.showcase.app.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 @Component
+@Profile("skip-running")
 @RequiredArgsConstructor
 public class SampleRunner extends BaseComponent implements CommandLineRunner {
 	private final OrderService orderService;
