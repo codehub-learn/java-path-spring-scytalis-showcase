@@ -23,6 +23,8 @@ public interface OrderService extends BaseService<Order, Long> {
 
 	Order getLazy(Long id);
 
+	List<Order> findAllLazy();
+
 	List<KeyValue<String, BigDecimal>> findAverageOrderCostPerCustomer();
 
 	List<PurchasesPerCustomerCategoryDto> findTotalNumberAndCostOfPurchasesPerCustomerCategory();

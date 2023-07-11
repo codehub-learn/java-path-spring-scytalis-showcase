@@ -23,6 +23,14 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 	Optional<Order> getLazy(Long id);
 
 	@Query("""
+				select distinct o from Order o
+				join fetch o.customer
+				join fetch o.orderItems oi
+				join fetch oi.product
+			""")
+	Optional<List<Order>> findAllLazy();
+
+	@Query("""
 			select new gr.codelearn.spring.showcase.app.transfer.KeyValue(concat(c.lastname, ' ', c.firstname), avg(o.cost))
 			from Order o join o.customer c
 			group by concat(c.lastname, ' ', c.firstname)

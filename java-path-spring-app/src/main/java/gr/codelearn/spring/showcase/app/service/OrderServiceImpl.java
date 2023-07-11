@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -104,6 +105,11 @@ public class OrderServiceImpl extends BaseServiceImpl<Order> implements OrderSer
 	public Order getLazy(final Long id) {
 		return orderRepository.getLazy(id).orElseThrow(
 				() -> new NoSuchElementException(String.format("There was no order matching id %d.", id)));
+	}
+
+	@Override
+	public List<Order> findAllLazy() {
+		return orderRepository.findAllLazy().orElse(Collections.emptyList());
 	}
 
 	@Override
