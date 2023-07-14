@@ -213,6 +213,8 @@
 					<include>**/*.csv</include>
 					<include>**/*.sql</include>
 					<include>**/*.ftl</include>
+					<include>**/*.js</include>
+					<include>**/*.css</include>
 					<include>**/*.pem</include>
 					<include>**/*.txt</include>
 				</includes>
