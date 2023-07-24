@@ -60,3 +60,5 @@ spring:
             # .sql) and DML (data.sql) scripts.
             mode: never
             platform: postgresql
+    cache:
+        cache-names: categories, products

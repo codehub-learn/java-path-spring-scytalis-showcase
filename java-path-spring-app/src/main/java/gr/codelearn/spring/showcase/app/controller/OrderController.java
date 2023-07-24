@@ -14,7 +14,6 @@ import gr.codelearn.spring.showcase.app.transfer.resource.OrderResource;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -68,7 +67,7 @@ public class OrderController extends BaseController<Order, OrderResource> {
 		return ResponseEntity.ok(ApiResponse.<List<KeyValue<String, BigDecimal>>>builder().data(results).build());
 	}
 
-	@Scheduled(cron = "0/30 * * * * ?")
+	//	@Scheduled(cron = "0/30 * * * * ?")
 	public void pushCustomerStatistics() {
 		//@formatter:off
 		StringBuilder contentBuilder = new StringBuilder();
