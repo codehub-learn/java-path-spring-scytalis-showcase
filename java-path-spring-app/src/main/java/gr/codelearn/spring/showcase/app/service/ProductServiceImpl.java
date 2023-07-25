@@ -4,15 +4,20 @@ import gr.codelearn.spring.showcase.app.domain.Category;
 import gr.codelearn.spring.showcase.app.domain.Product;
 import gr.codelearn.spring.showcase.app.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
+@CacheConfig(cacheNames = "products", keyGenerator = "customKeyGenerator")
 public class ProductServiceImpl extends BaseServiceImpl<Product> implements ProductService {
 	private final ProductRepository productRepository;
 	private final CategoryService categoryService;
@@ -29,6 +34,13 @@ public class ProductServiceImpl extends BaseServiceImpl<Product> implements Prod
 		logger.trace("Creating {} assigned to {}.", product, category);
 		product.setCategory(category);
 		return productRepository.save(product);
+	}
+
+	@Override
+	@Cacheable
+	public List<Product> findAll() {
+		logger.trace("Retrieving all items.");
+		return productRepository.findAll();
 	}
 
 	@Override
