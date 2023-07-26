@@ -60,3 +60,24 @@ spring:
             # .sql) and DML (data.sql) scripts.
             mode: never
             platform: postgresql
+management:
+    server:
+        port: 9090
+    endpoints:
+        web:
+            base-path: /management
+            exposure:
+                include: "*"
+        enabled-by-default: true
+    endpoint:
+        health:
+            show-components: always
+            cache:
+                time-to-live: 15s
+            show-details: always
+        shutdown:
+            enabled: false
+    jmx:
+        metrics:
+            export:
+                enabled: true
