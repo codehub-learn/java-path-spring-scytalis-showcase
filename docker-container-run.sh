@@ -1,0 +1,1 @@
+docker container run -p 5432:5432 -e POSTGRES_USER=sa -e POSTGRES_PASSWORD=sa -e POSTGRES_DB=scytalis-eshop -e PGDATA=/var/lib/postgresql/data/pgdata -v $home/dbdata/postgresql/scytalis-eshop:/var/lib/postgresql/data/pgdata --name scytalis-postgres -d postgres:alpine
