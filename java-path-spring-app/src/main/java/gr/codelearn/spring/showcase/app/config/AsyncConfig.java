@@ -16,7 +16,7 @@ public class AsyncConfig {
 		asyncExecutor.setCorePoolSize(3);
 		asyncExecutor.setMaxPoolSize(3);
 		asyncExecutor.setQueueCapacity(100);
-		asyncExecutor.setThreadNamePrefix("Async-");
+		asyncExecutor.setThreadNamePrefix("async-");
 		asyncExecutor.setWaitForTasksToCompleteOnShutdown(true);
 		asyncExecutor.initialize();
 		return asyncExecutor;
